@@ -4,6 +4,18 @@ import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
+import Counter from './components/Counter';
+import { countReducer } from './state/reducers';
+import { combineReducers, createStore } from 'redux';
+
+const monsterReducer = combineReducers({
+  count: countReducer,
+});
+
+export const store = createStore(
+  monsterReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+)
 
 const App = () => {
   const state = {
@@ -35,6 +47,7 @@ const App = () => {
     <div className="boxes">
       <div className="box">
         <Header car={state.car} />
+        <Counter />
         <AddedFeatures car={state.car} />
       </div>
       <div className="box">
